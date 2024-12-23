@@ -1,6 +1,7 @@
 from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
 from crewai_tools import DOCXSearchTool
+import os
 
 # Uncomment the following line to use an example of a custom tool
 # from rag_tool.tools.custom_tool import MyCustomTool
@@ -12,11 +13,19 @@ from crewai_tools import DOCXSearchTool
 class RagToolCrew():
 	"""RagTool crew"""
 
+	
+
 	@agent
 	def researcher(self) -> Agent:
+		docx_file = os.path.abspath("Untitled.docx")
+
+		# Validate the file exists
+		if not os.path.exists(docx_file):
+			raise FileNotFoundError(f"The DOCX file was not found at: {docx_file}")
+		
 		return Agent(
 			config=self.agents_config['researcher'],
-			tools=[DOCXSearchTool(docx='')],
+			tools=[DOCXSearchTool(docx=docx_file)],
 			verbose=True
 		)
 
