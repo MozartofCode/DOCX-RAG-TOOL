@@ -1,17 +1,8 @@
 research_task:
   description: >
-    Conduct a thorough research about {topic}
-    Make sure you find any interesting and relevant information given
-    the current year is 2024.
+    Conduct a thorough research to answer a customers question: "{question}"
+    Make sure you find any relevant information and present it in the best possible way
+    for the customer to understand
   expected_output: >
-    A list with 10 bullet points of the most relevant information about {topic}
+    Costumer Service message as a response to the given inquiry based on the research from the given company document
   agent: researcher
-
-reporting_task:
-  description: >
-    Review the context you got and expand each topic into a full section for a report.
-    Make sure the report is detailed and contains any and all relevant information.
-  expected_output: >
-    A fully fledge reports with the mains topics, each with a full section of information.
-    Formatted as markdown without '```'
-  agent: reporting_analyst
