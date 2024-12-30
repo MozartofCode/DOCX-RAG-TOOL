@@ -3,17 +3,10 @@ from crewai.project import CrewBase, agent, crew, task
 from crewai_tools import DOCXSearchTool
 import os
 
-# Uncomment the following line to use an example of a custom tool
-# from rag_tool.tools.custom_tool import MyCustomTool
-
-# Check our tools documentations for more information on how to use them
-# from crewai_tools import SerperDevTool
 
 @CrewBase
 class RagToolCrew():
 	"""RagTool crew"""
-
-	
 
 	@agent
 	def researcher(self) -> Agent:
@@ -29,10 +22,23 @@ class RagToolCrew():
 			verbose=True
 		)
 
+	@agent
+	def writer(self) -> Agent:
+		return Agent(
+			config=self.agents_config['writer'],
+			verbose=True
+		)
+
 	@task
 	def research_task(self) -> Task:
 		return Task(
 			config=self.tasks_config['research_task'],
+		)
+
+	@task
+	def writer_task(self) -> Task:
+		return Task(
+			config=self.tasks_config['writer_task'],
 		)
 
 	@crew
