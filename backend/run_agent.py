@@ -76,3 +76,6 @@ def main(question):
     result = crew.kickoff(inputs=question_input)
 
     return result.raw
+
+
+print(main("What is the company's mission statement?"))
