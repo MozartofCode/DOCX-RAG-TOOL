@@ -29,7 +29,7 @@ function App() {
       }
 
       const data = await res.json();
-      setResponse(data.message || 'No response received');  // Assuming the backend returns a 'message' field
+      setResponse(data.result || 'No response received'); 
     } catch (err) {
       setResponse('Error: ' + err.message);
     }
