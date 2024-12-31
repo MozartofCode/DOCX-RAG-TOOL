@@ -1,4 +1,4 @@
-import json
+import sys
 from dotenv import load_dotenv
 from langchain_openai import ChatOpenAI
 from crewai import Agent, Task, Crew
@@ -12,7 +12,7 @@ load_dotenv()
 
 def main(question):
     # Define tools
-    docx_file = os.path.abspath("./backend/company.docx")
+    docx_file = os.path.abspath("company.docx")
 
 		# Validate the file exists
     if not os.path.exists(docx_file):
@@ -77,5 +77,7 @@ def main(question):
 
     return result.raw
 
-
-print(main("What is the company's mission statement?"))
+if __name__ == "__main__":
+    input_data = sys.argv[1]
+    result = main(input_data)
+    print(result)
