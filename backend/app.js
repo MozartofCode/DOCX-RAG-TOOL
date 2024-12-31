@@ -20,22 +20,17 @@ function callPythonFunction(inputData) {
 
         let result = '';
         pythonProcess.stdout.on('data', (data) => {
-            console.log("HERE1")
             result += data.toString();
         });
 
         pythonProcess.stderr.on('data', (data) => {
-            console.log("HERE2")
             console.error(`Error: ${data}`);
         });
 
         pythonProcess.on('close', (code) => {
-            console.log("HERE3")
             if (code !== 0) {
-                console.log("HERE4")
                 reject(`Process exited with code ${code}`);
             } else {
-                console.log("HERE5")
                 console.log(result.trim())
                 console.log(result)
                 resolve(result.trim());
@@ -55,7 +50,6 @@ app.post('/ask-agent', async (req, res) => {
 
     try {
         const result = await callPythonFunction(question);
-        console.log("result: ", result)
         res.json({ success: true, result });
     } catch (error) {
         console.log("error: ", error)
